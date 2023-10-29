@@ -73,3 +73,4 @@ In case of any issues, make sure that:
 - All connections are correct.
 - Raspberry Pi Pico is properly programmed.
 - The script on the computer is correctly configured and has access to the serial port and the database.
+- The COM port in the computer script (`pc_side.py`) is correctly set to match the port to which Raspberry Pi Pico is connected. Change the COM port in the script if necessary.
