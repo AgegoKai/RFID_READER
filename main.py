@@ -11,6 +11,7 @@ def uidToString(uid):
 # Konfiguracja dla Raspberry Pi Pico
 reader = MFRC522(spi_id=0, sck=2, miso=4, mosi=3, cs=1, rst=0)
 led = Pin(17, Pin.OUT)  # Ustaw pin GP17 jako wyjściowy dla diody LED
+buzzer = Pin(5, Pin.OUT)  # Ustaw pin GP5 jako wyjściowy dla buzzera
 
 print("")
 print("Please place card on reader")
@@ -31,10 +32,12 @@ try:
                 uid_str = uidToString(uid)
                 print("Card detected {}".format(uid_str))
                 
-                # Zapal diodę LED
+                # Zapal diodę LED i aktywuj buzzer
                 led.value(1)
-                utime.sleep_ms(500)  # Dioda będzie świecić przez 0,5 sekundy
+                buzzer.value(1)
+                utime.sleep_ms(500)  # Dioda i buzzer będą aktywne przez 0,5 sekundy
                 led.value(0)  # Wyłącz diodę LED
+                buzzer.value(0)  # Wyłącz buzzer
                 
                 PreviousCard = uid
             else:
@@ -44,3 +47,4 @@ try:
         utime.sleep_ms(50)
 except KeyboardInterrupt:
     pass
+
